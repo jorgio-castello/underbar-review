@@ -105,8 +105,23 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
-  };
+    //if iterator is undefined - set it to _.identity,
+    iterator = iterator === undefined ? _.identity : iterator;
+    //Declare an empty object
+    let obj = {};
 
+    //Loop through the array
+    for (let i = 0; i < array.length; i++) {
+      let key = iterator(array[i]);
+      if (obj[key] === undefined) {
+        //Add the current element as a key value pair
+        obj[key] = array[i];
+      }
+    }
+
+    //Returning the Object.values(obj);
+    return Object.values(obj);
+  };
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
