@@ -337,12 +337,12 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-  _.memoize = function(func) {
+  _.memoize = func => {
     // Declare a variable called memoizeResult = {};
     let memoizeResult = {};
 
     // Return a function
-    return function () {
+    return function() {
       // Declare jsonArgs which will be assigned to a stringified version of arguments
       let jsonArgs = JSON.stringify(arguments);
 
@@ -352,7 +352,7 @@
         return memoizeResult[jsonArgs];
       } else {
         // otherwise, declare a result variable and assign it to func.apply(this, arguments) and
-        let result = func.apply(this, arguments);
+        let result = func(...arguments);
         // set memoizeResults[jsonArgs] equal to result
         memoizeResult[jsonArgs] = result;
         // return result
