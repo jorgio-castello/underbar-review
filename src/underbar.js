@@ -128,6 +128,17 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+
+    //Declare a resultArr
+    let resultArr = [];
+    //Invoke each
+    _.each(collection, item => {
+      //On each element, push the result of iterator(element) into the resultArr
+      resultArr.push(iterator(item));
+    });
+
+    return resultArr;
+
   };
 
   /*
