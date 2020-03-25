@@ -388,8 +388,24 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-  };
+    // Declare a variable which will be assigned to a copy of array
+    let arrayCopy = array.slice();
+    // Declare a result array
+    let resultArray = [];
 
+    // while the array copy's length is greater than 0
+    while (arrayCopy.length > 0) {
+      // Get a random index
+      let index = Math.floor(Math.random() * arrayCopy.length);
+      // Push the value at random index of the array copy to the result array
+      resultArray.push(arrayCopy[index]);
+      // Remove the value at random index of the array copy from array copy
+      arrayCopy.splice(index, 1);
+    }
+
+    // return result array
+    return resultArray;
+  };
 
   /**
    * ADVANCED
