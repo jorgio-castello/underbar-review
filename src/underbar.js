@@ -180,6 +180,30 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    //Assign collectionCopy depending on whether collection is an object / array
+    let collectionCopy;
+    if (!Array.isArray(collection) && typeof collection === 'object') {
+      collectionCopy = Object.values(collection);
+    } else {
+      //Declare a collectionCopy = collection.slice();
+      collectionCopy = collection.slice();
+    }
+
+    //if undefined accumulator
+    if (accumulator === undefined) {
+      //assign the first value of the collection to accumulator
+      accumulator = collectionCopy[0];
+      //collectionCopy = collectionCopy.slice(1);
+      collectionCopy = collectionCopy.slice(1);
+    }
+
+    //Loop through the collection
+    _.each(collectionCopy, item => {
+      //At each pass: invoke iterator on current element,
+      accumulator = iterator(accumulator, item);
+    });
+
+    return accumulator;
   };
 
   // Determine if the array or object contains a given value (using `===`).
