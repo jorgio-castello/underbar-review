@@ -338,6 +338,27 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    // Declare a variable called memoizeResult = {};
+    let memoizeResult = {};
+
+    // Return a function
+    return function () {
+      // Declare jsonArgs which will be assigned to a stringified version of arguments
+      let jsonArgs = JSON.stringify(arguments);
+
+      // if memoizeResult[jsonArgs] exists
+      if (memoizeResult[jsonArgs]) {
+        // return memoizeResult[jsonArgs]
+        return memoizeResult[jsonArgs];
+      } else {
+        // otherwise, declare a result variable and assign it to func.apply(this, arguments) and
+        let result = func.apply(this, arguments);
+        // set memoizeResults[jsonArgs] equal to result
+        memoizeResult[jsonArgs] = result;
+        // return result
+        return result;
+      }
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
