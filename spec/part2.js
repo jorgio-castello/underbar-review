@@ -191,7 +191,12 @@
       it('should override properties found on the destination', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+
+        let destination = {'dog': 'Jeffrey'};
+        let source = {'dog': 'Sally'};
+        let extended = _.extend(destination, source);
+
+        expect(extended.dog).to.equal('Sally');
       });
 
       it('should not override properties not found in the source', function() {
